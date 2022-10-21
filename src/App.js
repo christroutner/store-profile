@@ -200,11 +200,31 @@ function InitializedView (props) {
 // Get the restURL query parameter.
 function GetRestUrl (props) {
   const [restURL] = useQueryParam('restURL', StringParam)
+  const [view] = useQueryParam('view', StringParam)
+  const [inputVal] = useQueryParam('inputVal', StringParam)
   // console.log('restURL: ', restURL)
 
   if (restURL) {
     serverUrl = restURL
     // queryParamExists = true
+  }
+
+  if (view) {
+    console.log(`view: ${view}`)
+
+    if (view.includes('token')) {
+      this.setState({ menuState: 0 })
+    } else if (view.includes('address')) {
+      this.setState({ menuState: 1 })
+    } else if (view.includes('transaction')) {
+      this.setState({ menuState: 2 })
+    }
+  }
+
+  // This input value will contain a TXID or an address. It should be put into
+  // the text box for the selected View and the button should be clicked.
+  if (inputVal) {
+    console.log('inputVal: ', inputVal)
   }
 
   return (<></>)

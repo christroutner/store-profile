@@ -46,7 +46,7 @@ class AppBody extends React.Component {
 
     switch (menuState) {
       case 0:
-        return (<TokenView wallet={this.state.wallet} />)
+        return (<TokenView wallet={this.state.wallet} appData={this.state.appData} />)
       case 1:
         return (<Placeholder2 />)
       case 2:
@@ -56,7 +56,7 @@ class AppBody extends React.Component {
       case 100:
         return (<ServerSelectView appData={this.state.appData} />)
       default:
-        return (<TokenView wallet={this.state.wallet} />)
+        return (<TokenView wallet={this.state.wallet} appData={this.state.appData} />)
     }
   }
 }

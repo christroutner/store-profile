@@ -22,6 +22,7 @@ class TokenView extends React.Component {
 
       // Token data. Initialized with placeholder values.
       iconUrl: null,
+      iconLink: '',
       immutableData: null,
       mutableData: null,
       genesisData: null
@@ -74,7 +75,7 @@ class TokenView extends React.Component {
           </Row>
           <br />
 
-          <TokenIcon iconUrl={this.state.iconUrl} />
+          <TokenIcon iconUrl={this.state.iconUrl} iconLink={this.state.iconLink} />
           <JsonDisplay header='Immutable Data' jsonData={this.state.immutableData} />
           <JsonDisplay header='Mutable Data' jsonData={this.state.mutableData} />
           <JsonDisplay header='Genesis Data & Token Stats' jsonData={this.state.genesisData} />
@@ -106,8 +107,21 @@ class TokenView extends React.Component {
       console.log(`tokenData2: ${JSON.stringify(tokenData2, null, 2)}`)
 
       // Render the token icon if it exists.
-      if (tokenData2.tokenIcon) {
+      if (tokenData2.optimizedTokenIcon) {
+        this.setState({ iconUrl: tokenData2.optimizedTokenIcon })
+      } else if (tokenData2.tokenIcon) {
         this.setState({ iconUrl: tokenData2.tokenIcon })
+      } else {
+        this.setState({ iconUrl: '' })
+      }
+
+      // Add a link to the token icon if it exists
+      if (tokenData2.optimizedFullSizedUrl) {
+        this.setState({ iconLink: tokenData2.optimizedFullSizedUrl })
+      } else if (tokenData2.fullSizedUrl) {
+        this.setState({ iconLink: tokenData2.fullSizedUrl })
+      } else {
+        this.setState({ iconLink: '' })
       }
 
       // Render the immutable data if it exists

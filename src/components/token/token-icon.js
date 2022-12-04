@@ -12,7 +12,16 @@ function TokenIcon (props) {
         <br />
         <Row>
           <Col style={{ textAlign: 'center' }}>
-            <Image fluid src={props.iconUrl} alt='token icon' style={{ maxWidth: '300px' }} />
+            {
+              props.iconLink
+                ? (
+                  <a href={props.iconLink} target='_blank' rel='noreferrer'>
+                    <Image fluid src={props.iconUrl} alt='token icon' style={{ maxWidth: '300px' }} />
+                  </a>
+                  )
+                : (<Image fluid src={props.iconUrl} alt='token icon' style={{ maxWidth: '300px' }} />)
+            }
+
           </Col>
         </Row>
         <br />

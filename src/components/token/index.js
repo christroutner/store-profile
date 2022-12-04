@@ -18,6 +18,7 @@ class TokenView extends React.Component {
       balance: '',
       textInput: '',
       wallet: props.wallet,
+      appData: props.appData,
 
       // Token data. Initialized with placeholder values.
       iconUrl: null,
@@ -30,6 +31,19 @@ class TokenView extends React.Component {
     this.handleGetTokenData = this.handleGetTokenData.bind(this)
 
     // _this = this
+  }
+
+  async componentDidMount () {
+    try {
+      if (this.state.appData.tokenId) {
+        if (!this.state.textInput) {
+          await this.setState({ textInput: this.state.appData.tokenId })
+          this.handleGetTokenData()
+        }
+      }
+    } catch (err) {
+      console.error('Error in token/index.js/componentDidMount(): ', err)
+    }
   }
 
   render () {

@@ -30,6 +30,7 @@ class TokenView extends React.Component {
 
     // Bind 'this' to event handlers
     this.handleGetTokenData = this.handleGetTokenData.bind(this)
+    this.handleEnter = this.handleEnter.bind(this)
 
     // _this = this
   }
@@ -47,6 +48,15 @@ class TokenView extends React.Component {
     }
   }
 
+  // Prevents reloading of the page if the user hits the enter button while
+  // typeing in the form.
+  handleEnter(e) {
+    if(e.key === 'Enter') {
+      e.preventDefault()
+      this.handleGetTokenData()
+    }
+  }
+
   render () {
     return (
 
@@ -57,7 +67,12 @@ class TokenView extends React.Component {
               <Form>
                 <Form.Group className='mb-3' controlId='formBasicEmail'>
                   <Form.Label>Enter a Token ID to lookup the token data:</Form.Label>
-                  <Form.Control type='text' placeholder='38e97c5d7d3585a2cbf3f9580c82ca33985f9cb0845d4dcce220cb709f9538b0' onChange={e => this.setState({ textInput: e.target.value })} />
+                  <Form.Control
+                    type='text'
+                    placeholder='38e97c5d7d3585a2cbf3f9580c82ca33985f9cb0845d4dcce220cb709f9538b0'
+                    onChange={e => this.setState({ textInput: e.target.value })}
+                    onKeyPress={this.handleEnter}
+                  />
                 </Form.Group>
 
                 <Button variant='primary' onClick={this.handleGetTokenData}>

@@ -30,12 +30,16 @@ class TokenView extends React.Component {
 
     // Bind 'this' to event handlers
     this.handleGetTokenData = this.handleGetTokenData.bind(this)
+    this.handleEnter = this.handleEnter.bind(this)
+    this.updateUrl = this.updateUrl.bind(this)
 
     // _this = this
   }
 
   async componentDidMount () {
     try {
+      // If the URL contains a token ID as a query parameter, then load
+      // the token data.
       if (this.state.appData.tokenId) {
         if (!this.state.textInput) {
           await this.setState({ textInput: this.state.appData.tokenId })
@@ -57,10 +61,16 @@ class TokenView extends React.Component {
               <Form>
                 <Form.Group className='mb-3' controlId='formBasicEmail'>
                   <Form.Label>Enter a Token ID to lookup the token data:</Form.Label>
-                  <Form.Control type='text' placeholder='38e97c5d7d3585a2cbf3f9580c82ca33985f9cb0845d4dcce220cb709f9538b0' onChange={e => this.setState({ textInput: e.target.value })} />
+                  <Form.Control
+                    type='text'
+                    placeholder='38e97c5d7d3585a2cbf3f9580c82ca33985f9cb0845d4dcce220cb709f9538b0'
+                    onChange={e => this.setState({ textInput: e.target.value })}
+                    value={this.state.textInput}
+                    onKeyPress={this.handleEnter}
+                  />
                 </Form.Group>
 
-                <Button variant='primary' onClick={this.handleGetTokenData}>
+                <Button variant='primary' onClick={this.updateUrl}>
                   Lookup Token
                 </Button>
               </Form>
@@ -82,6 +92,33 @@ class TokenView extends React.Component {
         </Container>
       </>
     )
+  }
+
+  // Prevents reloading of the page if the user hits the enter button while
+  // typeing in the form.
+  handleEnter(e) {
+    if(e.key === 'Enter') {
+      e.preventDefault()
+      // this.handleGetTokenData()
+      this.updateUrl()
+    }
+  }
+
+  // Update the URL so that the token ID is loaded through a query parameter.
+  updateUrl(e) {
+    const textInput = this.state.textInput
+    // const oldUrl = window.location.href
+
+    // If there is no other query parameter, then it's safe to overwrite the
+    // url.
+    // if(!oldUrl.includes('?')) {
+      window.location.href = `/?tokenid=${textInput}`
+    //   return
+    // }
+
+    // if(oldUrl.includes('restURL')) {
+    //   console.log('serverUrl: ', this.appData.serverUrl)
+    // }
   }
 
   async handleGetTokenData (event) {

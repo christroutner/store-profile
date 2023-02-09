@@ -113,7 +113,8 @@ class App extends React.Component {
     const appData = {
       servers: this.state.servers, // Alternative back end servers
       wallet: this.state.wallet,
-      tokenId: this.state.tokenId
+      tokenId: this.state.tokenId,
+      serverUrl: this.state.serverUrl
     }
 
     return (
@@ -220,6 +221,7 @@ function GetRestUrl (props) {
   if (restURL) {
     serverUrl = restURL
     // queryParamExists = true
+    // _this.setState({serverUrl})
   }
 
   // if (view) {

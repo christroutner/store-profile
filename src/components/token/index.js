@@ -107,8 +107,18 @@ class TokenView extends React.Component {
   // Update the URL so that the token ID is loaded through a query parameter.
   updateUrl(e) {
     const textInput = this.state.textInput
+    // const oldUrl = window.location.href
 
-    window.location.href = `/?tokenid=${textInput}`
+    // If there is no other query parameter, then it's safe to overwrite the
+    // url.
+    // if(!oldUrl.includes('?')) {
+      window.location.href = `/?tokenid=${textInput}`
+    //   return
+    // }
+
+    // if(oldUrl.includes('restURL')) {
+    //   console.log('serverUrl: ', this.appData.serverUrl)
+    // }
   }
 
   async handleGetTokenData (event) {

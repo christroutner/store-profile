@@ -1,13 +1,13 @@
-# slp-token-explorer
+# store-profile
 
 This is a single page app (SPA) build on top of React. It's a 'block explorer' for SLP tokens on the Bitcoin Cash blockchain.
 
-This repository is forked from [react-boostrap-web3-spa](https://github.com/Permissionless-Software-Foundation/react-bootstrap-web3-spa) boilerplate.
+This repository is forked from [slp-token-explorer](https://github.com/Permissionless-Software-Foundation/slp-token-explorer) boilerplate.
 
 ## Installation
 ```bash
-git clone https://github.com/Permissionless-Software-Foundation/slp-token-explorer
-cd slp-token-explorer
+git clone https://github.com/christroutner/store-profile
+cd store-profile
 npm install
 npm start
 npm run build

@@ -31,7 +31,7 @@ class TokenView extends React.Component {
     // Bind 'this' to event handlers
     this.handleGetTokenData = this.handleGetTokenData.bind(this)
     this.handleEnter = this.handleEnter.bind(this)
-    this.updateUrl = this.updateUrl.bind(this)
+    this.handleUpdateUrl = this.handleUpdateUrl.bind(this)
 
     // _this = this
   }
@@ -70,7 +70,7 @@ class TokenView extends React.Component {
                   />
                 </Form.Group>
 
-                <Button variant='primary' onClick={this.updateUrl}>
+                <Button variant='primary' onClick={this.handleUpdateUrl}>
                   Lookup Token
                 </Button>
               </Form>
@@ -96,23 +96,23 @@ class TokenView extends React.Component {
 
   // Prevents reloading of the page if the user hits the enter button while
   // typeing in the form.
-  handleEnter(e) {
-    if(e.key === 'Enter') {
+  handleEnter (e) {
+    if (e.key === 'Enter') {
       e.preventDefault()
       // this.handleGetTokenData()
-      this.updateUrl()
+      this.handleUpdateUrl()
     }
   }
 
   // Update the URL so that the token ID is loaded through a query parameter.
-  updateUrl(e) {
+  handleUpdateUrl (e) {
     const textInput = this.state.textInput
     // const oldUrl = window.location.href
 
     // If there is no other query parameter, then it's safe to overwrite the
     // url.
     // if(!oldUrl.includes('?')) {
-      window.location.href = `/?tokenid=${textInput}`
+    window.location.href = `/?tokenid=${textInput}`
     //   return
     // }
 

@@ -9,6 +9,7 @@ import { Container, Row, Col, Form, Button, Spinner } from 'react-bootstrap'
 // Local libraries
 import TokenIcon from './token-icon.js'
 import JsonDisplay from './json-display.js'
+import StoreInfo from './store-info'
 
 // class TokenView extends React.Component {
 //   constructor (props) {
@@ -76,7 +77,7 @@ function TokenView (props) {
           <Col className='text-break' style={{ textAlign: 'center' }}>
             <Form>
               <Form.Group className='mb-3' controlId='formBasicEmail'>
-                <Form.Label>Enter a Token ID to lookup the token data:</Form.Label>
+                <Form.Label>Enter the Store's Token ID to pull up the profile for that Store:</Form.Label>
                 <Form.Control
                   type='text'
                   placeholder='38e97c5d7d3585a2cbf3f9580c82ca33985f9cb0845d4dcce220cb709f9538b0'
@@ -87,7 +88,7 @@ function TokenView (props) {
               </Form.Group>
 
               <Button variant='primary' onClick={e => handleUpdateUrl(appData)}>
-                Lookup Token
+                Lookup Store
               </Button>
             </Form>
           </Col>
@@ -102,6 +103,15 @@ function TokenView (props) {
         <br />
 
         <TokenIcon iconUrl={iconUrl} iconLink={iconLink} />
+        
+        <StoreInfo appData={appData} />
+
+        <Row>
+          <Col>
+            <h2>Token Metadata</h2>
+          </Col>
+        </Row>
+
         <JsonDisplay header='Immutable Data' jsonData={immutableData} />
         <JsonDisplay header='Mutable Data' jsonData={mutableData} />
         <JsonDisplay header='Genesis Data & Token Stats' jsonData={genesisData} />

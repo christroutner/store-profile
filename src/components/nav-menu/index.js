@@ -21,13 +21,13 @@ function NavMenu (props) {
       <Navbar collapseOnSelect expand='xxxl' bg='dark' variant='dark' style={{ paddingRight: '20px' }}>
         <Navbar.Brand href='#home' style={{ paddingLeft: '20px' }}>
           <Image src={Logo} thumbnail width='50' />{' '}
-          PSF Web3 Demo
+          SLP Token Data Explorer
         </Navbar.Brand>
 
         <Navbar.Toggle aria-controls='responsive-navbar-nav' />
         <Navbar.Collapse id='responsive-navbar-nav'>
           <Nav className='mr-auto'>
-            <Nav.Link href='#' onClick={(e) => handleClickEvent(0)}>Store Profile</Nav.Link>
+            <Nav.Link href='#' onClick={(e) => handleClickEvent(0)}>Token Explorer</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Navbar>

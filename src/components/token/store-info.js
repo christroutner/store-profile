@@ -65,20 +65,26 @@ function getProducts(appData) {
       const jsxObj = (
         <div key={`product-${i}`}>
           <Row>
-            <Col>
-              Name: {thisProduct.name}
+            <Col style={{padding: '10px'}}>
+              <b>Name:</b> {thisProduct.name}
             </Col>
           </Row>
           <Row>
-            <Col>
-              Description: {thisProduct.desc}
+            <Col style={{padding: '10px'}}>
+              <b>Description:</b> {thisProduct.desc}
+              <br />
             </Col>
           </Row>
-          <Row>
-            <Col>
-              Price: {thisProduct.price}
-            </Col>
-          </Row>
+          {
+            thisProduct.price ? (
+              <Row>
+                <Col>
+                  <b>Price:</b> {thisProduct.price}
+                </Col>
+              </Row>
+            ) : null
+          }
+
           <Row>
             <Col>
               <Image fluid thumbnail src={thisProduct.imgUrl} />

@@ -7,10 +7,13 @@
 import React from 'react'
 import { Row, Col, Image } from 'react-bootstrap'
 
-function StoreInfo(props) {
+// Local libraries
+import StoreMap from './store-map.js'
+
+function StoreInfo (props) {
   const appData = props.appData
 
-  if(!appData.explorerData.mutableData) {
+  if (!appData.explorerData.mutableData) {
     return null
   }
 
@@ -34,10 +37,15 @@ function StoreInfo(props) {
             <b>More Information Link:</b>{' '}
             <a
               href={appData.explorerData.mutableData.jsonLd.storeData.moreInfoLink}
-              rel="noreferrer"
-              target="_blank">
+              rel='noreferrer'
+              target='_blank'
+            >
               {appData.explorerData.mutableData.jsonLd.storeData.moreInfoLink}
             </a>
+          </p>
+
+          <p>
+            <a href='https://localtradelist.com'>This store is featured on LocalTradeList.com</a>
           </p>
         </Col>
       </Row>
@@ -48,41 +56,50 @@ function StoreInfo(props) {
         </Col>
       </Row>
       {products}
+
+      <Row style={{ padding: '25px' }}>
+        <Col>
+          <h3>Map</h3>
+          <StoreMap appData={appData} />
+        </Col>
+      </Row>
     </>
   )
 }
 
 // Turn an array of raw product data into an array of JSX objects.
-function getProducts(appData) {
+function getProducts (appData) {
   try {
     const products = appData.explorerData.mutableData.jsonLd.storeData.products
 
     const outAry = []
 
-    for(let i=0; i < products.length; i++) {
+    for (let i = 0; i < products.length; i++) {
       const thisProduct = products[i]
 
       const jsxObj = (
         <div key={`product-${i}`}>
           <Row>
-            <Col style={{padding: '10px'}}>
+            <Col style={{ padding: '10px' }}>
               <b>Name:</b> {thisProduct.name}
             </Col>
           </Row>
           <Row>
-            <Col style={{padding: '10px'}}>
+            <Col style={{ padding: '10px' }}>
               <b>Description:</b> {thisProduct.desc}
               <br />
             </Col>
           </Row>
           {
-            thisProduct.price ? (
-              <Row>
-                <Col>
-                  <b>Price:</b> {thisProduct.price}
-                </Col>
-              </Row>
-            ) : null
+            thisProduct.price
+              ? (
+                <Row>
+                  <Col>
+                    <b>Price:</b> {thisProduct.price}
+                  </Col>
+                </Row>
+                )
+              : null
           }
 
           <Row>
@@ -98,7 +115,7 @@ function getProducts(appData) {
     }
 
     return outAry
-  } catch(err) {
+  } catch (err) {
     console.error('Error in getProducts(): ', err.message)
     throw err
   }

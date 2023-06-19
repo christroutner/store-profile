@@ -8,7 +8,7 @@
 // Global npm libraries
 import React from 'react'
 import { Nav, Navbar, Image } from 'react-bootstrap'
-import Logo from './psf-logo.png'
+import Logo from './localtradelist01.png'
 
 function NavMenu (props) {
   const handleClickEvent = (menuItem) => {
@@ -19,7 +19,7 @@ function NavMenu (props) {
   return (
     <>
       <Navbar collapseOnSelect expand='xxxl' bg='dark' variant='dark' style={{ paddingRight: '20px' }}>
-        <Navbar.Brand href='#home' style={{ paddingLeft: '20px' }}>
+        <Navbar.Brand href='https://localtradelist.com' style={{ paddingLeft: '20px' }}>
           <Image src={Logo} thumbnail width='50' />{' '}
           Store Profile
         </Navbar.Brand>
@@ -27,7 +27,7 @@ function NavMenu (props) {
         <Navbar.Toggle aria-controls='responsive-navbar-nav' />
         <Navbar.Collapse id='responsive-navbar-nav'>
           <Nav className='mr-auto'>
-            <Nav.Link href='#' onClick={(e) => handleClickEvent(0)}>Token Explorer</Nav.Link>
+            <Nav.Link href='#' onClick={(e) => handleClickEvent(0)}>Store Profile</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Navbar>

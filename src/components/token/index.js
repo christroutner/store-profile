@@ -103,7 +103,7 @@ function TokenView (props) {
         <br />
 
         <TokenIcon iconUrl={iconUrl} iconLink={iconLink} />
-        
+
         <StoreInfo appData={appData} />
 
         <Row>
@@ -231,7 +231,7 @@ async function handleGetTokenData (appData) {
       appData.explorerData.setGenesisData(tokenData2.tokenStats)
     }
 
-    appData.explorerData.setStatus('Done!')
+    appData.explorerData.setStatus('')
   } catch (err) {
     appData.explorerData.setStatus(<p><b>Error</b>: {`${err.message}`}</p>)
   }
